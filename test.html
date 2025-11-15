@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Icon Timeline</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 60px;
+      bottom: 60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #e0e0e0 0,
+        #e0e0e0 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      z-index: 0;
+    }
+    .icon-node {
+      width: 80px;
+      height: 80px;
+      background: rgb(0, 124, 255);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 124, 255, 0.2);
+      position: relative;
+      z-index: 1;
+      transition: transform 0.2s ease;
+    }
+    .icon-node:hover {
+      transform: scale(1.1);
+    }
+    .icon-node svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+    /* Responsive */
+    @media (max-width: 480px) {
+      .icon-node {
+        width: 64px;
+        height: 64px;
+      }
+      .icon-node svg {
+        width: 28px;
+        height: 28px;
+      }
+      .timeline::before {
+        top: 50px;
+        bottom: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="timeline">
+
+    <!-- Phone Icon -->
+    <div class="icon-node">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+    </div>
+
+    <!-- Person + Icon -->
+    <div class="icon-node">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        <path d="M19.5 15c.83 0 1.5.67 1.5 1.5S20.33 18 19.5 18 18 17.33 18 16.5s.67-1.5 1.5-1.5z" opacity="0.7"/>
+        <path d="M21 14h-3v-1h3v1z" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <!-- Upload / Merge Icon -->
+    <div class="icon-node">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <polyline points="12 3 12 15"/>
+      </svg>
+    </div>
+
+  </div>
+</body>
+</html>
