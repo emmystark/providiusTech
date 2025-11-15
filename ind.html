@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BairesDev Hero Section Recreation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(0, 124, 255, 0.1) 0%, transparent 50%), 
+                        radial-gradient(circle at 80% 20%, rgba(24, 5, 146, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            /* font-size: clamp(2.5rem, 5vw, 4rem); */
+            font-weight: 700;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            z-index: 1;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            z-index: 1;
+            position: relative;
+            max-width: 600px;
+        }
+
+        .cycling-phrases {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 600;
+            min-height: 80px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .phrase {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            background: linear-gradient(150deg, rgb(0, 124, 255) 0%, rgb(24, 5, 146) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.5s ease-in-out;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        .phrase.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .phrase.exiting {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-20px);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cta-button {
+            background: linear-gradient(150deg, rgb(0, 124, 255) 0%, rgb(24, 5, 146) 100%);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.8s forwards;
+            z-index: 1;
+            position: relative;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 124, 255, 0.3);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .hero { padding: 0 15px; }
+            .cycling-phrases { min-height: 60px; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <!-- <h1>Access 4,000+ Top 1% Engineers</h1>
+        <p>Timezone-aligned talent ready to scale your projects</p> -->
+        <div class="cycling-phrases" id="cycling-container"></div>
+        <!-- <a href="#contact" class="cta-button">Schedule a Call</a> -->
+    </section>
+
+    <script>
+        const phrases = [
+            'Full Stack Engineers',
+            'AI Engineers',
+            'Tech Talents',
+            'Cloud Engineers',
+            'DevOps Specialists',
+            'Data Scientists',
+            'Mobile Developers',
+            'UX/UI Designers'
+        ];
+
+        const container = document.getElementById('cycling-container');
+        let currentIndex = 0;
+
+        // Create phrase elements
+        phrases.forEach((phrase, index) => {
+            const span = document.createElement('span');
+            span.classList.add('phrase');
+            span.textContent = phrase;
+            if (index === 0) span.classList.add('active');
+            container.appendChild(span);
+        });
+
+        function cyclePhrases() {
+            const phrasesEls = container.querySelectorAll('.phrase');
+            const current = phrasesEls[currentIndex];
+            currentIndex = (currentIndex + 1) % phrases.length;
+            const next = phrasesEls[currentIndex];
+
+            // Exit current
+            current.classList.remove('active');
+            current.classList.add('exiting');
+
+            // Enter next after short delay
+            setTimeout(() => {
+                next.classList.add('active');
+                current.classList.remove('exiting');
+            }, 250); // Half transition time
+
+            // Hold for 3s before next cycle
+            setTimeout(cyclePhrases, 3000);
+        }
+
+        // Start after initial load
+        setTimeout(cyclePhrases, 1000);
+    </script>
+</body>
+</html>
