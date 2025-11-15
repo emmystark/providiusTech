@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BairesDev - Project Discussion Form</title>
+    <style>
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        /* Logo */
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo svg {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-top: 0.5rem;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #ff6b35;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        .radio-item input[type="radio"] {
+            margin-right: 0.5rem;
+            accent-color: #ff6b35;
+            transform: scale(1.1);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 0.9rem 1.5rem;
+            margin-top: 1.5rem;
+            background-color: #1a1a1a;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #333;
+        }
+
+        .submit-btn::after {
+            content: " →";
+            margin-left: 0.25rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+
+            .radio-item {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo">
+            
+            <div class="logo-text"><strong
+                ><h1 style="font-size: 26px">
+                  Providius<span style="color: rgb(0, 124, 255)">Tech</span>
+                </h1></strong
+              ></div>
+        </div>
+
+        <!-- Heading -->
+        <h1>Want to discuss a project? Tell us more.</h1>
+        <p class="subtitle">Please answer a few questions about your software development needs.</p>
+
+        <!-- Form -->
+        <form>
+            <div class="form-group">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" placeholder="" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Your work email</label>
+                <input type="email" id="email" name="email" placeholder="" required>
+            </div>
+
+            <div class="form-group">
+                <label>What service are you most interested in?</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="service" value="staff-augmentation">
+                        Staff Augmentation
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="service" value="dedicated-teams">
+                        Dedicated Teams
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="service" value="software-outsourcing">
+                        Software Outsourcing
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="help">How can we help?</label>
+                <textarea id="help" name="help" placeholder="" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Get Started</button>
+        </form>
+    </div>
+</body>
+</html>
