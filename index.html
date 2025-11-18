@@ -218,7 +218,7 @@
                 alt="ProvidiusTech"
                 width="188"
                 height="28"
-                class="h-7 w-48 cursor-pointer object-cover object-left"
+                class="h-7 w-48 cursor-pointer object-cover object-left "
               />
               <!-- <strong
                 ><h1 style="font-size: 26px">
@@ -1046,19 +1046,73 @@
             >
           </nav>
         </div>
-        <button type="button" class="mdL:hidden block" aria-label="toggle">
-          <span class=""
-            ><div
-              class="w-6 h-6 bg-site-neutrals-900"
-              style="
-                mask: url(https://assets.ProvidiusTech.com/image/upload/v1/www/icons/Menu.svg);
-                -webkit-mask: url(https://assets.ProvidiusTech.com/image/upload/v1/www/icons/Menu.svg);
-              "
-            ></div
-          ></span>
+        <button type="button" id="mobile-menu-button" aria-label="Toggle menu" class="mdL:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 group relative z-50">
+          <span class="w-6 h-0.5 bg-site-neutrals-900 rounded-full transition-all duration-300 ease-in-out group-hover:bg-site-primary-600"></span>
+          <span class="w-6 h-0.5 bg-site-neutrals-900 rounded-full transition-all duration-300 ease-in-out group-hover:bg-site-primary-600"></span>
+          <span class="w-6 h-0.5 bg-site-neutrals-900 rounded-full transition-all duration-300 ease-in-out group-hover:bg-site-primary-600"></span>
         </button>
       </div>
+
+      <div
+        id="mobile-menu"
+        class="mdL:hidden fixed inset-0 z-0 backdrop-blur-sm -translate-y-2 opacity-0 pointer-events-none transition-all duration-300 ease-out"
+        aria-hidden="true"
+      >
+      
+        <nav class="px-6 pt-24 pb-10 bg-white h-100 z-0 " style="height: 200vh; z-index: 9999px;">
+          <!-- <a href="." class="block h-[22px]"
+            ><div class="lgS:w-auto h-100 w-8 overflow-hidden sm:w-120">
+              <img
+                src="./img/logo.png"
+                alt="ProvidiusTech"
+                width="188"
+                height="100"
+                class=" w-48 cursor-pointer object-cover object-left "
+                style=" position: relative; top: -20px; z-index: 99999; height: 30px;"
+              />
+              
+            </div></a
+          > -->
+          <ul class="space-y-4 text-site-neutrals-900 text-lg font-semibold">
+            <li><a href=".solutions/" class="block py-2 hover:text-site-primary-600">Solutions</a></li>
+            <li><a href=".technologies/" class="block py-2 hover:text-site-primary-600">Technologies</a></li>
+            <li><a href=".about/" class="block py-2 hover:text-site-primary-600">About</a></li>
+            <li><a href=".clients/" class="block py-2 hover:text-site-primary-600">Our Work</a></li>
+          </ul>
+          <div class="mt-8">
+            <a href="./schedulecall.html" class="inline-flex items-center justify-center px-4 py-3 rounded-lg bg-site-neutrals-900 text-white hover:bg-site-neutrals-700 font-medium">Schedule a Call</a>
+          </div>
+        </nav>
+      </div>
     </header>
+
+    <style>
+      /* Hamburger: turn into an ���X” when .open is added to the button */
+      #mobile-menu-button.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #mobile-menu-button.open span:nth-child(2) { opacity: 0; transform: translateX(-8px); }
+      #mobile-menu-button.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+      #mobile-menu-button span { transform-origin: center; }
+      /* Panel visible state */
+      #mobile-menu.open { opacity: 1; translate: 0 0; pointer-events: auto; }
+    </style>
+
+    <script>
+      (function () {
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        if (!btn || !menu) return;
+        function toggleMenu(force) {
+          const willOpen = typeof force === 'boolean' ? force : !btn.classList.contains('open');
+          btn.classList.toggle('open', willOpen);
+          menu.classList.toggle('open', willOpen);
+          document.body.style.overflow = willOpen ? 'hidden' : '';
+          menu.setAttribute('aria-hidden', String(!willOpen));
+        }
+        btn.addEventListener('click', () => toggleMenu());
+        menu.addEventListener('click', (e) => { const a = e.target.closest('a'); if (a) toggleMenu(false); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleMenu(false); });
+      })();
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -3807,7 +3861,7 @@
                     -webkit-mask: url(https://assets.ProvidiusTech.com/image/upload/v1/www/icons/Call.svg);
                   "
                 ></div></span
-              ><a href="tel:+14084782739">+1 (408) 478-2739</a>
+              ><a href="tel:+14084782739">+234-9030-987-132</a>
             </div>
           </div>
         </section>
@@ -4119,7 +4173,7 @@
       </div>
     </footer>
     <output
-      class="mdS:justify-center justify-start mx-auto flex py-3 px-4 will-change-transform bg-site-neutrals-900 max-w-full fixed w-full bottom-0 z-50 translate-y-full opacity-0 pointer-events-none animate-snackbar-show"
+      class="mdS:justify-center justify-start mx-auto flex py-3 px-4 will-change-transform bg-site-neutrals-900 max-w-full fixed w-full bottom-0 z-10 translate-y-full opacity-0 pointer-events-none animate-snackbar-show"
       ><div class="flex items-center gap-3 w-[calc(100%-4rem)] mdS:w-auto">
         <div class="site-paragraph-m flex-1 font-bold text-white">
           <span class="mdS:w-full block font-normal"
