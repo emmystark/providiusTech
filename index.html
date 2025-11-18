@@ -1208,103 +1208,136 @@
         ></div>
       </div>
 
-      <style>
-          @media (max-width: 425px) {
- /* ---------- MOBILE (≤425px) ---------- */
-@media (max-width: 425px) {
+     
+
+<style>
+
+
+
+  
+
+
+
+
+
+
+  /* Base styles for cycling phrases container */
   .cycling-phrases {
-    text-align: center;          /* centre the whole block */
-    width: 100%;
-    min-height: 40px;
-    position: relative;
-    margin-bottom: 40px;
-    z-index: 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 60px;
+      margin-bottom: 40px;
+      z-index: 1;
+      overflow: hidden;
   }
 
+  /* Base phrase styles */
   .phrase {
-    position: absolute;
-    top: 0;
-    left: 50%;                   /* start from horizontal centre */
-    transform: translateX(calc(-50% + 20px)); /* +20px = entry offset */
-    opacity: 0;
-    display: inline-block;       /* respect text width for centering */
-    width: auto;
-    background: linear-gradient(150deg, rgb(0,124,255) 0%, rgb(24,5,146) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    transition: all 0.5s ease-in-out;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) translateX(30px);
+      opacity: 0;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      text-align: center;
+      background: linear-gradient(150deg, rgb(0,124,255) 0%, rgb(24,5,146) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .phrase.active {
-    opacity: 1;
-    transform: translateX(-50%); /* exact centre */
+      opacity: 1;
+      transform: translate(-50%, -50%) translateX(0);
   }
 
   .phrase.exiting {
-    opacity: 0;
-    transform: translateX(calc(-50% - 20px)); /* exit left */
+      opacity: 0;
+      transform: translate(-50%, -50%) translateX(-30px);
   }
-}
-
-/* ---------- DESKTOP (outside the media query) ---------- */
-/* Your original left-aligned rules stay exactly as they are */
-.cycling-phrases {
-  font-weight: 600;
-  min-height: 40px;
-  position: relative;
-  z-index: 1;
-  margin-bottom: 40px;
-  width: 100%;
-  text-align: left;   /* left on larger screens */
-}
-.phrase {
-  position: absolute;
-  top: 0;
-  transform: translateX(20px);
-  opacity: 0;
-  background: linear-gradient(150deg, rgb(0,124,255) 0%, rgb(24,5,146) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transition: all 0.5s ease-in-out;
-}
-.phrase.active   { opacity: 1; transform: translateX(0); }
-.phrase.exiting { opacity: 0; transform: translateX(-20px); }
-}
 
 
-        .cycling-phrases {
-          /* font-size: clamp(2rem, 4vw, 2.8rem); */
-          font-weight: 600;
-          min-height: 40px;
-          position: relative;
-          z-index: 1;
-          margin-bottom: 40px;
-          width: 100%;
 
-          text-align: left;
-        }
-        .phrase {
-          position: absolute;
-          top: 0;
-          /* EDIT: Changed from 50% to 0 for left positioning */
-          /* left: 0; */
-          /* EDIT: Removed centering transform; now at natural left position */
-          transform: translateX(0);
-          opacity: 0;
-          background: linear-gradient(
-            150deg,
-            rgb(0, 124, 255) 0%,
-            rgb(24, 5, 146) 100%
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          transition: all 0.5s ease-in-out;
-          /* EDIT: Adjusted slide for left-aligned (horizontal from right; change to translateY if vertical preferred) */
-          transform: translateX(20px);
-        }
+
+  
+
+
+
+
+
+
+  /* Desktop styles (default) */
+  @media (min-width: 1024px) {
+
+
+    .cycling-phrases {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      min-height: 100px;
+      margin-bottom: 40px;
+      z-index: 1;
+      overflow: hidden;
+  }
+
+  /* Base phrase styles */
+  .phrase {
+      position: absolute;
+      top: 5%;
+      left: 0%;
+      transform: translate(0%, 0%) translateX(0px);
+      opacity: 0;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 2.5rem;
+      line-height: 1.2;
+      text-align: left;
+      background: linear-gradient(150deg, rgb(0,124,255) 0%, rgb(24,5,146) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+
+
+      .cycling-phrases {
+          min-height: 80px;
+          margin-bottom: 50px;
+      }
+      
+      .phrase {
+          font-size: 3rem;
+          transform: translate(10%, 10%) translateX(0px);
+      }
+      
+      .phrase.active {
+          transform: translate(0%, -50%) translateX(0);
+      }
+      
+      .phrase.exiting {
+          transform: translate(0%, 0%) translateX(0px);
+      }
+
+
+
+     
+
+          .phrase.active   { opacity: 1; transform: translateX(0); }
+          .phrase.exiting { opacity: 0; transform: translateX(-20px); }
+
+
+
+       
         .phrase.active {
           opacity: 1;
           /* EDIT: Entry from right to center-left */
@@ -1327,7 +1360,126 @@
             transform: translateY(0);
           }
         }
-      </style>
+
+
+  }
+
+  /* Tablet styles */
+  @media (max-width: 1023px) and (min-width: 769px) {
+      .cycling-phrases {
+          min-height: 70px;
+          margin-bottom: 45px;
+      }
+      
+      .phrase {
+          font-size: 2.8rem;
+          transform: translate(-50%, -50%) translateX(35px);
+      }
+      
+      .phrase.active {
+          transform: translate(-50%, -50%) translateX(0);
+      }
+      
+      .phrase.exiting {
+          transform: translate(-50%, -50%) translateX(-35px);
+      }
+  }
+
+  /* Small tablet styles */
+  @media (max-width: 768px) and (min-width: 481px) {
+      .cycling-phrases {
+          min-height: 60px;
+          margin-bottom: 40px;
+      }
+      
+      .phrase {
+          font-size: 2.2rem;
+          transform: translate(-50%, -50%) translateX(25px);
+      }
+      
+      .phrase.active {
+          transform: translate(-50%, -50%) translateX(0);
+      }
+      
+      .phrase.exiting {
+          transform: translate(-50%, -50%) translateX(-25px);
+      }
+  }
+
+  /* Mobile styles */
+  @media (max-width: 480px) {
+      .cycling-phrases {
+          min-height: 80px;
+          margin-bottom: 35px;
+          padding: 0 10px;
+          /* width: 80%; */
+      }
+      
+      .phrase {
+        top: 18px;
+          font-size: 1.8rem;
+          /* white-space: normal; */
+          max-width: 90%;
+          /* word-wrap: break-word; */
+          /* hyphens: auto; */
+          transform: translate(-50%, -50%) translateX(20px);
+      }
+      
+      .phrase.active {
+          transform: translate(-50%, -50%) translateX(0);
+      }
+      
+      .phrase.exiting {
+          transform: translate(-50%, -50%) translateX(-20px);
+      }
+  }
+
+  /* Extra small mobile styles */
+  @media (max-width: 375px) {
+      .cycling-phrases {
+          min-height: 45px;
+          margin-bottom: 30px;
+          padding: 0 5px;
+      }
+      
+      .phrase {
+          font-size: 1.6rem;
+          max-width: 95%;
+          transform: translate(-50%, -50%) translateX(15px);
+      }
+      
+      .phrase.active {
+          transform: translate(-50%, -50%) translateX(0);
+      }
+      
+      .phrase.exiting {
+          transform: translate(-50%, -50%) translateX(-15px);
+      }
+  }
+
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+      .phrase {
+          transition: opacity 0.3s ease;
+          transform: translate(-50%, -50%) !important;
+      }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+      .phrase {
+          background: none;
+          -webkit-text-fill-color: initial;
+          color: #000;
+      }
+  }
+
+ 
+
+
+
+  
+</style>
 
       <div
         class="relative mx-auto w-full max-w-screen-lg px-4 py-16 sm:px-6 lg:px-20"
